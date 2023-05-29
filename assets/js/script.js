@@ -24,7 +24,6 @@ function init() {
 
 // The startGame function is called when the start button is clicked
 function startGame() {
-  isCorrect = false;
   timerCount = 10;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
