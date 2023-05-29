@@ -1,22 +1,20 @@
-var correct = document.querySelector(".correct");
-var incorrect = document.querySelector(".incorrect");
-var timerElement = document.querySelector(".timer-count");
-var startButton = document.querySelector(".start-button");
+const correct = document.querySelector(".correct");
+const incorrect = document.querySelector(".incorrect");
+const timerElement = document.querySelector(".timer-count");
+const startButton = document.querySelector(".start-button");
 
-var chosenWord = "";
-var numBlanks = 0;
-var correctCounter = 0;
-var incorrectCounter = 0;
-var isCorrect = false;
+const correctCounter = 0;
+const incorrectCounter = 0;
+const isCorrect = false;
 var timer;
 var timerCount;
 
 // Arrays used to create blanks and letters on screen
-var lettersInChosenWord = [];
-var blanksLetters = [];
+const lettersInChosenWord = [];
+const blanksLetters = [];
 
 // Array of words the user will guess
-var words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+const words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
 
 // The init function is called when the page loads 
 function init() {
@@ -89,7 +87,7 @@ function setIncorrects() {
 // These functions are used by init
 function getCorrects() {
   // Get stored value from client storage, if it exists
-  var storedCorrects = localStorage.getItem("correctCount");
+  const storedCorrects = localStorage.getItem("correctCount");
   // If stored value doesn't exist, set counter to 0
   if (storedCorrects === null) {
     correctCounter = 0;
@@ -102,7 +100,7 @@ function getCorrects() {
 }
 
 function getIncorrects() {
-  var storedIncorrects = localStorage.getItem("incorrectCount");
+    const storedIncorrects = localStorage.getItem("incorrectCount");
   if (storedIncorrects === null) {
     incorrectCounter = 0;
   } else {
@@ -119,7 +117,7 @@ startButton.addEventListener("click", startGame);
 init();
 
 // Bonus: Add reset button
-var resetButton = document.querySelector(".reset-button");
+const resetButton = document.querySelector(".reset-button");
 
 function resetGame() {
   // Resets win and loss counts
