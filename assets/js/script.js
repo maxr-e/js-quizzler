@@ -5,16 +5,16 @@ const startButton = document.querySelector(".start-button");
 
 const correctCounter = 0;
 const incorrectCounter = 0;
-const isCorrect = false;
-var timer;
-var timerCount;
 
-// Arrays used to create blanks and letters on screen
-const lettersInChosenWord = [];
-const blanksLetters = [];
 
-// Array of words the user will guess
-const words = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+const content = document.querySelector(".content");
+
+const questions = [
+  ["Question 1", "Right Answer", "Answer 2", "Answer 3", "Answer 4"],
+  ["Question 2", "Answer 1", "Answer 2", "Right Answer", "Answer 4"],
+  ["Question 3", "Answer 1", "Answer 2", "Answer 3", "Right Answer"],
+  ["Question 4", "Right Answer", "Answer 2", "Answer 3", "Answer 4"],
+];
 
 // The init function is called when the page loads 
 function init() {
@@ -32,7 +32,7 @@ function startGame() {
   startTimer()
 }
 
-// The winGame function is called when the win condition is met
+// The correctAnswer function is called when the correct condition is met
 function correctAnswer() {
   wordBlank.textContent = "Correct!!!🏆 ";
   correctCounter++
@@ -40,8 +40,8 @@ function correctAnswer() {
   setCorrects()
 }
 
-// The loseGame function is called when timer reaches 0
-function loseGame() {
+// The inccorectAnswer function is called when timer reaches 0
+function incorrectAnswer() {
   wordBlank.textContent = "GAME OVER";
   incorrectCounter++
   startButton.disabled = false;
@@ -55,7 +55,7 @@ function startTimer() {
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount >= 0) {
-      // Tests if win condition is met
+      // Tests if correct condition is met
       if (isCorrect && timerCount > 0) {
         // Clears interval and stops timer
         clearInterval(timer);
@@ -72,13 +72,13 @@ function startTimer() {
 }
 
 
-// Updates win count on screen and sets win count to client storage
+// Updates correct count on screen and sets correct count to client storage
 function setCorrects() {
   correct.textContent = corectCounter;
   localStorage.setItem("correctCount", correctCounter);
 }
 
-// Updates lose count on screen and sets lose count to client storage
+// Updates incorrect count on screen and sets incorrect count to client storage
 function setIncorrects() {
   incorrect.textContent = incorrectCounter;
   localStorage.setItem("incorrectCount", incorrectCounter);
@@ -92,10 +92,10 @@ function getCorrects() {
   if (storedCorrects === null) {
     correctCounter = 0;
   } else {
-    // If a value is retrieved from client storage set the winCounter to that value
+    // If a value is retrieved from client storage set the correctCounter to that value
     correctCounter = storedCorrects;
   }
-  //Render win count to page
+  //Render correct count to page
   correct.textContent = correctCounter;
 }
 
@@ -120,10 +120,10 @@ init();
 const resetButton = document.querySelector(".reset-button");
 
 function resetGame() {
-  // Resets win and loss counts
+  // Resets correct and loss counts
   correctCounter = 0;
   incorrectCounter = 0;
-  // Renders win and loss counts and sets them into client storage
+  // Renders correct and loss counts and sets them into client storage
   setCorrects()
   setIncorrects()
 }
